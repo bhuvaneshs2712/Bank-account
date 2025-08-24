@@ -2,8 +2,9 @@ services:
   - type: web
     name: bank-system
     env: python
+    plan: free
     buildCommand: bash build.sh
-    startCommand: gunicorn bank_system.wsgi:application
+    startCommand: gunicorn --bind 0.0.0.0:$PORT bank_system.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: bank_system.settings
