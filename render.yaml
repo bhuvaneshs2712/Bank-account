@@ -2,16 +2,17 @@ services:
   - type: web
     name: bank-system
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn bank_system.wsgi
+    buildCommand: bash build.sh
+    startCommand: gunicorn bank_system.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: bank_system.settings
       - key: DEBUG
         value: "False"
-      # Add your domain(s) here after first deploy
       - key: ALLOWED_HOSTS
         value: "*"
       - key: SECRET_KEY
         generateValue: true
+      - key: PYTHONPATH
+        value: "."
     autoDeploy: true
