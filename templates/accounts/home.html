@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to SecureBank - Bank Account Management System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 animate__slideInLeft">
+                <h1 class="display-4 fw-bold mb-4">
+                    Welcome to <span class="text-warning">SecureBank</span>
+                </h1>
+                <p class="lead mb-4">
+                    Your trusted partner for secure and reliable banking services. 
+                    Open your account with ease and manage your finances with confidence.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'personal_details' %}" class="btn btn-warning btn-lg animate__pulse">
+                        <i class="fas fa-user-plus me-2"></i>Open New Account
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-tachometer-alt me-2"></i>View Dashboard
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 animate__slideInRight">
+                <div class="text-center">
+                    <i class="fas fa-university" style="font-size: 15rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-white mb-3">Why Choose SecureBank?</h2>
+                <p class="lead text-white-50">Experience banking like never before with our comprehensive features</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 animate__fadeInUp">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-shield-alt text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                        <h4 class="card-title">Secure & Reliable</h4>
+                        <p class="card-text">
+                            Your data is protected with bank-grade security measures. 
+                            We ensure the highest level of privacy and data protection.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 animate__fadeInUp">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-bolt text-success" style="font-size: 3rem;"></i>
+                        </div>
+                        <h4 class="card-title">Fast & Easy</h4>
+                        <p class="card-text">
+                            Complete your account opening process in minutes. 
+                            Simple forms with real-time validation and guidance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 animate__fadeInUp">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-headset text-info" style="font-size: 3rem;"></i>
+                        </div>
+                        <h4 class="card-title">24/7 Support</h4>
+                        <p class="card-text">
+                            Round-the-clock customer support to assist you with 
+                            any queries or concerns about your account.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Account Types Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold mb-3">Account Types</h2>
+                <p class="lead">Choose the account that best suits your financial needs</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 animate__fadeInUp">
+                    <div class="card-header">
+                        <i class="fas fa-piggy-bank mb-2" style="font-size: 2rem;"></i>
+                        <h5 class="mb-0">Savings Account</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>High interest rates</li>
+                            <li><i class="fas fa-check text-success me-2"></i>No minimum balance</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Free ATM withdrawals</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Online banking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 animate__fadeInUp">
+                    <div class="card-header">
+                        <i class="fas fa-briefcase mb-2" style="font-size: 2rem;"></i>
+                        <h5 class="mb-0">Current Account</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Unlimited transactions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Business features</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Checkbook facility</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Overdraft facility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 animate__fadeInUp">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line mb-2" style="font-size: 2rem;"></i>
+                        <h5 class="mb-0">Fixed Deposit</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Higher interest rates</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Flexible tenures</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Premature withdrawal</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Auto-renewal option</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 animate__fadeInUp">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt mb-2" style="font-size: 2rem;"></i>
+                        <h5 class="mb-0">Recurring Deposit</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Regular savings</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Flexible amounts</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Good returns</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Discipline building</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-white mb-3">How It Works</h2>
+                <p class="lead text-white-50">Simple 4-step process to open your account</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="progress-steps">
+                    <div class="progress-step active">
+                        <i class="fas fa-user"></i>
+                        <span class="mt-3">Personal Details</span>
+                    </div>
+                    <div class="progress-step">
+                        <i class="fas fa-users"></i>
+                        <span class="mt-3">Family Details</span>
+                    </div>
+                    <div class="progress-step">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="mt-3">Nominee Details</span>
+                    </div>
+                    <div class="progress-step">
+                        <i class="fas fa-university"></i>
+                        <span class="mt-3">Account Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{% url 'personal_details' %}" class="btn btn-warning btn-lg animate__pulse">
+                    <i class="fas fa-rocket me-2"></i>Get Started Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card animate__float">
+                    <i class="fas fa-users"></i>
+                    <h3>10,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card animate__float">
+                    <i class="fas fa-university"></i>
+                    <h3>5,000+</h3>
+                    <p>Active Accounts</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card animate__float">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>50+</h3>
+                    <p>Branch Locations</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-card animate__float">
+                    <i class="fas fa-award"></i>
+                    <h3>25+</h3>
+                    <p>Years of Trust</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="display-5 fw-bold text-white mb-4">Ready to Start Your Banking Journey?</h2>
+                <p class="lead text-white-50 mb-4">
+                    Join thousands of satisfied customers who trust SecureBank for their financial needs.
+                    Open your account today and experience the difference.
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{% url 'personal_details' %}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>Open Account
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-eye me-2"></i>View Accounts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

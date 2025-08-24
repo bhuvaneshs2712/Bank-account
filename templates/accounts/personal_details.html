@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+
+{% block title %}Personal Details - SecureBank{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Progress Steps -->
+            <div class="progress-steps mb-5">
+                <div class="progress-step active">
+                    <i class="fas fa-user"></i>
+                    <span class="mt-3">Personal Details</span>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-users"></i>
+                    <span class="mt-3">Family Details</span>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-user-tie"></i>
+                    <span class="mt-3">Nominee Details</span>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-university"></i>
+                    <span class="mt-3">Account Details</span>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="card animate__fadeInUp">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user me-2"></i>
+                        Personal Details
+                    </h3>
+                    <p class="mb-0 mt-2">Please provide your personal information to proceed with account opening</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-id-card me-2"></i>
+                                    Personal Information
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-user me-1"></i>First Name *
+                                </label>
+                                {{ form.first_name }}
+                                {% if form.first_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.first_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Last Name *
+                                </label>
+                                {{ form.last_name }}
+                                {% if form.last_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.last_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.date_of_birth.id_for_label }}" class="form-label">
+                                    <i class="fas fa-calendar me-1"></i>Date of Birth *
+                                </label>
+                                {{ form.date_of_birth }}
+                                {% if form.date_of_birth.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.date_of_birth.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.gender.id_for_label }}" class="form-label">
+                                    <i class="fas fa-venus-mars me-1"></i>Gender *
+                                </label>
+                                {{ form.gender }}
+                                {% if form.gender.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.gender.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-phone me-2"></i>
+                                    Contact Information
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.mobile_number.id_for_label }}" class="form-label">
+                                    <i class="fas fa-mobile-alt me-1"></i>Mobile Number *
+                                </label>
+                                {{ form.mobile_number }}
+                                {% if form.mobile_number.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.mobile_number.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Enter 10-digit mobile number</small>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.email_id.id_for_label }}" class="form-label">
+                                    <i class="fas fa-envelope me-1"></i>Email ID *
+                                </label>
+                                {{ form.email_id }}
+                                {% if form.email_id.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.email_id.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Address Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-map-marker-alt me-2"></i>
+                                    Address Information
+                                </h5>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.address1.id_for_label }}" class="form-label">
+                                    <i class="fas fa-home me-1"></i>Address Line 1 *
+                                </label>
+                                {{ form.address1 }}
+                                {% if form.address1.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.address1.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.address2.id_for_label }}" class="form-label">
+                                    <i class="fas fa-home me-1"></i>Address Line 2
+                                </label>
+                                {{ form.address2 }}
+                                {% if form.address2.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.address2.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Optional - Apartment, suite, etc.</small>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.pincode.id_for_label }}" class="form-label">
+                                    <i class="fas fa-map-pin me-1"></i>Pincode *
+                                </label>
+                                {{ form.pincode }}
+                                {% if form.pincode.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.pincode.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.city.id_for_label }}" class="form-label">
+                                    <i class="fas fa-city me-1"></i>City *
+                                </label>
+                                {{ form.city }}
+                                {% if form.city.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.city.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.state.id_for_label }}" class="form-label">
+                                    <i class="fas fa-map me-1"></i>State *
+                                </label>
+                                {{ form.state }}
+                                {% if form.state.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.state.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Identity Documents -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-id-badge me-2"></i>
+                                    Identity Documents
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.aadhar_number.id_for_label }}" class="form-label">
+                                    <i class="fas fa-id-card me-1"></i>Aadhar Number *
+                                </label>
+                                {{ form.aadhar_number }}
+                                {% if form.aadhar_number.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.aadhar_number.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Enter 12-digit Aadhar number</small>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.pan_card_number.id_for_label }}" class="form-label">
+                                    <i class="fas fa-credit-card me-1"></i>PAN Card Number *
+                                </label>
+                                {{ form.pan_card_number }}
+                                {% if form.pan_card_number.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.pan_card_number.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Enter 10-character PAN number</small>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'home' %}" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left me-2"></i>Back to Home
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-arrow-right me-2"></i>Continue to Family Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Information Card -->
+            <div class="card mt-4 animate__fadeInUp">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">
+                        <i class="fas fa-info-circle me-2"></i>Important Information
+                    </h6>
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-check text-success me-2"></i>All fields marked with * are mandatory</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Ensure all information is accurate and up-to-date</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Your data is protected with bank-grade security</li>
+                        <li><i class="fas fa-check text-success me-2"></i>You can edit your details later if needed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

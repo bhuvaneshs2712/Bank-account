@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% block title %}Family Details - SecureBank{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Progress Steps -->
+            <div class="progress-steps mb-5">
+                <div class="progress-step completed">
+                    <i class="fas fa-user"></i>
+                    <span class="mt-3">Personal Details</span>
+                </div>
+                <div class="progress-step active">
+                    <i class="fas fa-users"></i>
+                    <span class="mt-3">Family Details</span>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-user-tie"></i>
+                    <span class="mt-3">Nominee Details</span>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-university"></i>
+                    <span class="mt-3">Account Details</span>
+                </div>
+            </div>
+
+            <!-- Customer Info Card -->
+            <div class="card mb-4 animate__fadeInUp">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">
+                        <i class="fas fa-user me-2"></i>Customer Information
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Name:</strong> {{ personal_detail.first_name }} {{ personal_detail.last_name }}</p>
+                            <p class="mb-1"><strong>Account Number:</strong> {{ personal_detail.account_number }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Mobile:</strong> {{ personal_detail.mobile_number }}</p>
+                            <p class="mb-1"><strong>Email:</strong> {{ personal_detail.email_id }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="card animate__fadeInUp">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="fas fa-users me-2"></i>
+                        Family Details
+                    </h3>
+                    <p class="mb-0 mt-2">Please provide your family information</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Spouse Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-heart me-2"></i>
+                                    Spouse Information (Optional)
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.spouse_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Spouse Name
+                                </label>
+                                {{ form.spouse_name }}
+                                {% if form.spouse_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.spouse_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.spouse_occupation.id_for_label }}" class="form-label">
+                                    <i class="fas fa-briefcase me-1"></i>Spouse Occupation
+                                </label>
+                                {{ form.spouse_occupation }}
+                                {% if form.spouse_occupation.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.spouse_occupation.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Children Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-baby me-2"></i>
+                                    Children Information
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.children_count.id_for_label }}" class="form-label">
+                                    <i class="fas fa-users me-1"></i>Number of Children
+                                </label>
+                                {{ form.children_count }}
+                                {% if form.children_count.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.children_count.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.children_details.id_for_label }}" class="form-label">
+                                    <i class="fas fa-info-circle me-1"></i>Children Details
+                                </label>
+                                {{ form.children_details }}
+                                {% if form.children_details.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.children_details.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Names, ages, and other relevant details</small>
+                            </div>
+                        </div>
+
+                        <!-- Parent Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-user-friends me-2"></i>
+                                    Parent Information
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.father_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-male me-1"></i>Father's Name *
+                                </label>
+                                {{ form.father_name }}
+                                {% if form.father_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.father_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.mother_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-female me-1"></i>Mother's Name *
+                                </label>
+                                {{ form.mother_name }}
+                                {% if form.mother_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.mother_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Emergency Contact -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-phone-alt me-2"></i>
+                                    Emergency Contact
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.emergency_contact_name.id_for_label }}" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Emergency Contact Name *
+                                </label>
+                                {{ form.emergency_contact_name }}
+                                {% if form.emergency_contact_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.emergency_contact_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.emergency_contact_relation.id_for_label }}" class="form-label">
+                                    <i class="fas fa-link me-1"></i>Relation with Contact *
+                                </label>
+                                {{ form.emergency_contact_relation }}
+                                {% if form.emergency_contact_relation.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.emergency_contact_relation.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.emergency_contact_mobile.id_for_label }}" class="form-label">
+                                    <i class="fas fa-mobile-alt me-1"></i>Emergency Contact Mobile *
+                                </label>
+                                {{ form.emergency_contact_mobile }}
+                                {% if form.emergency_contact_mobile.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.emergency_contact_mobile.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <small class="form-text text-muted">Enter 10-digit mobile number</small>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'edit_personal_details' personal_detail.id %}" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left me-2"></i>Back to Personal Details
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-arrow-right me-2"></i>Continue to Nominee Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Information Card -->
+            <div class="card mt-4 animate__fadeInUp">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">
+                        <i class="fas fa-info-circle me-2"></i>Important Information
+                    </h6>
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-check text-success me-2"></i>Spouse information is optional</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Parent information is mandatory</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Emergency contact should be someone reliable</li>
+                        <li><i class="fas fa-check text-success me-2"></i>You can update family details later</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

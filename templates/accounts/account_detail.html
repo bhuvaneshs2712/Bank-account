@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Detail - SecureBank{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-10">
+			<div class="card mb-4">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<h3 class="mb-0"><i class="fas fa-user me-2"></i>Account Detail</h3>
+					<div class="d-flex gap-2">
+						<a href="{% url 'dashboard' %}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left me-1"></i>Back</a>
+						<a href="{% url 'edit_personal_details' personal_detail.id %}" class="btn btn-sm btn-info"><i class="fas fa-edit me-1"></i>Edit Personal</a>
+						<a href="{% url 'edit_family_details' personal_detail.id %}" class="btn btn-sm btn-info"><i class="fas fa-users me-1"></i>Edit Family</a>
+						<a href="{% url 'edit_nominee_details' personal_detail.id %}" class="btn btn-sm btn-info"><i class="fas fa-user-tie me-1"></i>Edit Nominee</a>
+						<a href="{% url 'edit_account_details' personal_detail.id %}" class="btn btn-sm btn-info"><i class="fas fa-university me-1"></i>Edit Account</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-6">
+							<h5 class="text-primary">Customer Information</h5>
+							<table class="table table-borderless">
+								<tr><td><strong>Name</strong></td><td>{{ personal_detail.first_name }} {{ personal_detail.last_name }}</td></tr>
+								<tr><td><strong>DOB</strong></td><td>{{ personal_detail.date_of_birth|date:"F d, Y" }}</td></tr>
+								<tr><td><strong>Gender</strong></td><td>{{ personal_detail.get_gender_display }}</td></tr>
+								<tr><td><strong>Mobile</strong></td><td>{{ personal_detail.mobile_number }}</td></tr>
+								<tr><td><strong>Email</strong></td><td>{{ personal_detail.email_id }}</td></tr>
+							</table>
+						</div>
+						<div class="col-md-6">
+							<h5 class="text-primary">Account Information</h5>
+							<table class="table table-borderless">
+								<tr><td><strong>Account No</strong></td><td>{{ personal_detail.account_number }}</td></tr>
+								<tr><td><strong>LEG</strong></td><td>{{ personal_detail.leg_number }}</td></tr>
+								<tr><td><strong>CIF</strong></td><td>{{ personal_detail.cif_id }}</td></tr>
+								<tr><td><strong>ASACASS</strong></td><td>{{ personal_detail.asacass_number }}</td></tr>
+								{% if account_detail %}
+								<tr><td><strong>Type</strong></td><td>{{ account_detail.get_account_type_display }}</td></tr>
+								<tr><td><strong>Scheme</strong></td><td>{{ account_detail.get_scheme_type_display }}</td></tr>
+								<tr><td><strong>Opened</strong></td><td>{{ account_detail.date_of_opening|date:"F d, Y" }}</td></tr>
+								<tr><td><strong>Deposit</strong></td><td>₹{{ account_detail.deposit_amount }}</td></tr>
+								<tr><td><strong>Balance</strong></td><td>₹{{ account_detail.current_balance }}</td></tr>
+								{% endif %}
+							</table>
+						</div>
+					</div>
+
+					{% if family_detail %}
+					<hr>
+					<h5 class="text-primary">Family Details</h5>
+					<p class="mb-1"><strong>Father:</strong> {{ family_detail.father_name }}</p>
+					<p class="mb-1"><strong>Mother:</strong> {{ family_detail.mother_name }}</p>
+					<p class="mb-1"><strong>Emergency Contact:</strong> {{ family_detail.emergency_contact_name }} ({{ family_detail.emergency_contact_relation }}) - {{ family_detail.emergency_contact_mobile }}</p>
+					{% endif %}
+
+					{% if nominee_detail %}
+					<hr>
+					<h5 class="text-primary">Nominee</h5>
+					<p class="mb-1"><strong>Name:</strong> {{ nominee_detail.nominee_name }}</p>
+					<p class="mb-1"><strong>Relation:</strong> {{ nominee_detail.nominee_relation }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

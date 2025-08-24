@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Summary - SecureBank{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Success Header -->
+            <div class="text-center mb-5 animate__fadeInUp">
+                <div class="success-icon mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="display-4 fw-bold text-success mb-3">Account Created Successfully!</h1>
+                <p class="lead text-white-50">Your bank account has been created and is ready for use.</p>
+            </div>
+
+            <!-- Account Summary Card -->
+            <div class="card animate__fadeInUp mb-4">
+                <div class="card-header">
+                    <h3 class="mb-0">
+                        <i class="fas fa-university me-2"></i>
+                        Account Summary
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-primary mb-3">Account Information</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Account Number:</strong></td>
+                                    <td><span class="badge bg-primary fs-6">{{ personal_detail.account_number }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>LEG Number:</strong></td>
+                                    <td>{{ personal_detail.leg_number }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CIF ID:</strong></td>
+                                    <td>{{ personal_detail.cif_id }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ASACASS Number:</strong></td>
+                                    <td>{{ personal_detail.asacass_number }}</td>
+                                </tr>
+                                {% if account_detail %}
+                                <tr>
+                                    <td><strong>Account Type:</strong></td>
+                                    <td><span class="badge bg-info">{{ account_detail.get_account_type_display }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scheme Type:</strong></td>
+                                    <td>{{ account_detail.get_scheme_type_display }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date of Opening:</strong></td>
+                                    <td>{{ account_detail.date_of_opening|date:"F d, Y" }}</td>
+                                </tr>
+                                {% if account_detail.maturity_date %}
+                                <tr>
+                                    <td><strong>Maturity Date:</strong></td>
+                                    <td>{{ account_detail.maturity_date|date:"F d, Y" }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <td><strong>Initial Deposit:</strong></td>
+                                    <td><span class="text-success fw-bold">₹{{ account_detail.deposit_amount }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Current Balance:</strong></td>
+                                    <td><span class="text-success fw-bold">₹{{ account_detail.current_balance }}</span></td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-primary mb-3">Customer Information</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>{{ personal_detail.first_name }} {{ personal_detail.last_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date of Birth:</strong></td>
+                                    <td>{{ personal_detail.date_of_birth|date:"F d, Y" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gender:</strong></td>
+                                    <td>{{ personal_detail.get_gender_display }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mobile Number:</strong></td>
+                                    <td>{{ personal_detail.mobile_number }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email ID:</strong></td>
+                                    <td>{{ personal_detail.email_id }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address:</strong></td>
+                                    <td>
+                                        {{ personal_detail.address1 }}<br>
+                                        {% if personal_detail.address2 %}{{ personal_detail.address2 }}<br>{% endif %}
+                                        {{ personal_detail.city }}, {{ personal_detail.state }} - {{ personal_detail.pincode }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Details Card -->
+            {% if family_detail %}
+            <div class="card animate__fadeInUp mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-users me-2"></i>
+                        Family Details
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Parent Information</h6>
+                            <p><strong>Father's Name:</strong> {{ family_detail.father_name }}</p>
+                            <p><strong>Mother's Name:</strong> {{ family_detail.mother_name }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Emergency Contact</h6>
+                            <p><strong>Name:</strong> {{ family_detail.emergency_contact_name }}</p>
+                            <p><strong>Relation:</strong> {{ family_detail.emergency_contact_relation }}</p>
+                            <p><strong>Mobile:</strong> {{ family_detail.emergency_contact_mobile }}</p>
+                        </div>
+                        {% if family_detail.spouse_name %}
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Spouse Information</h6>
+                            <p><strong>Name:</strong> {{ family_detail.spouse_name }}</p>
+                            <p><strong>Occupation:</strong> {{ family_detail.spouse_occupation }}</p>
+                        </div>
+                        {% endif %}
+                        {% if family_detail.children_count > 0 %}
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Children Information</h6>
+                            <p><strong>Number of Children:</strong> {{ family_detail.children_count }}</p>
+                            {% if family_detail.children_details %}
+                            <p><strong>Details:</strong> {{ family_detail.children_details }}</p>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Nominee Details Card -->
+            {% if nominee_detail %}
+            <div class="card animate__fadeInUp mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user-tie me-2"></i>
+                        Nominee Details
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Personal Information</h6>
+                            <p><strong>Name:</strong> {{ nominee_detail.nominee_name }}</p>
+                            <p><strong>Relation:</strong> {{ nominee_detail.nominee_relation }}</p>
+                            <p><strong>Date of Birth:</strong> {{ nominee_detail.nominee_date_of_birth|date:"F d, Y" }}</p>
+                            <p><strong>Mobile:</strong> {{ nominee_detail.nominee_mobile_number }}</p>
+                            {% if nominee_detail.nominee_email %}
+                            <p><strong>Email:</strong> {{ nominee_detail.nominee_email }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Address & Documents</h6>
+                            <p><strong>Address:</strong> {{ nominee_detail.nominee_address }}</p>
+                            <p><strong>Aadhar Number:</strong> {{ nominee_detail.nominee_aadhar_number }}</p>
+                            <p><strong>PAN Card:</strong> {{ nominee_detail.nominee_pan_card_number }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Next Steps Card -->
+            <div class="card animate__fadeInUp mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-list-check me-2"></i>
+                        Next Steps
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Account Activation</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-clock text-warning me-2"></i>Account verification in progress</li>
+                                <li><i class="fas fa-envelope text-info me-2"></i>Welcome email will be sent</li>
+                                <li><i class="fas fa-sms text-success me-2"></i>SMS confirmation will be sent</li>
+                                <li><i class="fas fa-box text-primary me-2"></i>Welcome kit will be delivered</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Banking Services</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-credit-card text-success me-2"></i>Debit card will be issued</li>
+                                <li><i class="fas fa-mobile-alt text-info me-2"></i>Mobile banking activation</li>
+                                <li><i class="fas fa-laptop text-primary me-2"></i>Internet banking setup</li>
+                                <li><i class="fas fa-print text-secondary me-2"></i>Passbook will be provided</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                        </a>
+                        <a href="{% url 'account_detail_view' personal_detail.id %}" class="btn btn-info btn-lg">
+                            <i class="fas fa-eye me-2"></i>View Account Details
+                        </a>
+                        <button onclick="window.print()" class="btn btn-success btn-lg">
+                            <i class="fas fa-print me-2"></i>Print Summary
+                        </button>
+                        <a href="{% url 'personal_details' %}" class="btn btn-warning btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Create Another Account
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.success-icon {
+    font-size: 5rem;
+    color: #28a745;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media print {
+    .btn {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+}
+</style>
+{% endblock %} 
